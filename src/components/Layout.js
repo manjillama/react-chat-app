@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-const socketUrl = 'http://localhost:5000'
+const socketUrl = 'https://glacial-badlands-28940.herokuapp.com'
 
 class Layout extends Component {
   constructor() {
