@@ -1,0 +1,153 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html, body, #root {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  margin: 0;
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.84);
+  height: 100%;
+  background-color: #f4f2fd;
+}
+h1, h2, h3, h4, h5, h6, dl, dd, ol, ul, menu, figure, blockquote, p, pre, form {
+  margin: 0;
+}
+section{
+  padding: 40px 0 !important;
+}
+ul.neutralize{
+  list-style-type: none;
+  padding: 0;
+}
+
+.d-flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.text-muted{
+  color: #b3b2ca
+}
+
+.mjl-container{
+  padding-right: 15px;
+  padding-left: 15px;
+  max-width: 1170px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.login-form label{
+  color: #cac8ee;
+}
+
+.login-form input {
+  outline: 0;
+  background: transparent;
+  max-width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 40px;
+  line-height: 20px;
+  font-size: 20px;
+  border-bottom: solid 2px #b3b2ca;
+  transition: all .23s ease-in;
+}
+
+#sidebar{
+  width: 250px;
+}
+
+#sidebar .user-list li{
+  padding: 15px;
+  background: #FFF;
+  margin: 15px 0;
+  -webkit-box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.1);
+}
+
+#chatbox {
+  width: 100%;
+}
+
+#chatbox input{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  resize: none;
+  padding-left: 15px;
+  box-sizing: border-box;
+  width: 85%;
+  font-size: inherit;
+  height: 100%;
+  outline: 0;
+  border: none;
+}
+
+#chatbox button{
+  width: 15%;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  text-align: center;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  outline:0;
+  color: #fff;
+  background: #2c95f9;
+  transition: all .35s ease-out;
+}
+
+#chatbox .messages{
+  padding: 15px 0;
+  min-height: 300px;
+  padding: 15px 0;
+  min-height: 300px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+#chatbox .messages li>.m{
+  background: #e9e7ec;
+  padding: 10px 15px;
+  border-radius: 16px;
+  display: inline-block;
+  margin: 6px 0;
+}
+#chatbox .messages li.right{
+  text-align: right;
+}
+#chatbox .messages li.right>.m{
+  background-color: #1482f8;
+  color: #FFF;
+}
+
+#chatbox .sender{
+  font-size: 12px;
+  display: block;
+}
