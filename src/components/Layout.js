@@ -32,6 +32,9 @@ class Layout extends Component {
     this.setState({socket})
   }
 
+  /*
+  * To reconnect user if connection is lost
+  */
   reconnet = ({username, isUser}) => {
     const {socket} = this.state;
     if(isUser){

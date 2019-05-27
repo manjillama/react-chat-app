@@ -1,3 +1,5 @@
+Live demo [here](https://live-chat-nodejs.herokuapp.com/)
+
 ### Configuration
 
 Edit config.js file inside src/ folder to set it to your production or development server.<br>
@@ -9,7 +11,6 @@ To install all the required dependencies/modules to run the app.
 ## Available Scripts
 
 In the project directory, you can run:
-
 
 
 ### `npm start`

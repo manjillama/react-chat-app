@@ -37,14 +37,13 @@ class LoginForm extends Component {
     }
   }
 
-
   setError = error => {
     this.setState({error})
   }
 
   render() {
     const {username, error} = this.state
-
+    const disabled = username ? false : true
     return (
       <form className="login" onSubmit={this.handleSubmit}>
         <div className="login-form">
@@ -55,6 +54,7 @@ class LoginForm extends Component {
             type="text"
             autoComplete="off"
             maxLength="14" />
+          <button type="submit" className="form-btn" disabled={disabled}>GO</button>
           <div className="error">{error ? error : null}</div>
 
         </div>

@@ -23,7 +23,6 @@ io.on('connection', (socket) => {
   var addedUser = false;
 
   socket.on(VERIFY_USER, (username, callback) => {
-    console.log("Hereeeeee");
     if(isUser(users, username)){
       callback({isUser: true, username: null})
     }else{
