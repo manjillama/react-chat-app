@@ -19,8 +19,8 @@ html, body, #root {
   color: rgba(0, 0, 0, 0.84);
   height: 100%;
   background: rgb(0,121,57);
-  background: linear-gradient(90deg, rgba(0,121,57,1) 0%, rgba(0,177,98,1) 30%, rgba(0,160,141,1) 100%);
-  /* background-color: #f2fdfb; */
+  /* background: linear-gradient(90deg, rgba(0,121,57,1) 0%, rgba(0,177,98,1) 30%, rgba(0,160,141,1) 100%); */
+  background: linear-gradient(90deg, rgba(118,35,211,1) 0%, rgba(233,141,208,1) 48%, rgba(253,156,189,1) 100%);
 }
 h1, h2, h3, h4, h5, h6, dl, dd, ol, ul, menu, figure, blockquote, p, pre, form {
   margin: 0;
@@ -82,8 +82,16 @@ ul.neutralize{
   height: 40px;
   line-height: 20px;
   font-size: 20px;
-  border-bottom: solid 2px #b3b2ca;
+  border-bottom: solid 2px #FFF;
   transition: all .23s ease-in;
+}
+
+.login-form .error{
+  color: #d43f3a;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 17px;
 }
 
 #header{
@@ -158,7 +166,7 @@ ul.neutralize{
   font-size: inherit;
   outline: 0;
   border: none;
-  background-color: #f0f3f8;
+  background-color: #e6eff8;
 }
 
 #chatbox button{
@@ -166,7 +174,7 @@ ul.neutralize{
   outline: 0;
   color: #fff;
   position: absolute;
-  right: 25px;
+  right: 24px;
   top: 13px;
   height: 40px;
   width: 80px;

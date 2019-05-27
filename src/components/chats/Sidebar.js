@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-const colors = ['#E91E63','#FFB300', '#00BCD4', '#8BC34A', '#9C27B0', '#795548']
+const colors = ['#E91E63','#FFB300', '#00BCD4', '#8BC34A', '#00cfb6', '#795548']
 
 
 
 class SideBar extends Component {
-  _renderUser(user, index){
+  _renderUser(user,myUsername, index){
     /*
     input   0 1 2 3 4 5 6 7 8 9 10 11 12
     output  0 1 2 3 4 5 0 1 2 3  4  5  0
@@ -16,12 +16,15 @@ class SideBar extends Component {
       }
       return index
     }
+
+    const userName = user === myUsername ? user+' (You)' : user
+
     return (
       <div className="d-flex">
         <div className="u-pp" style={{background:colors[i(index)]}}>
           {user.charAt(0)}
         </div>
-        <span style={{lineHeight:40+'px',fontSize: 13+'px'}}>{user}</span>
+        <span style={{lineHeight:40+'px',fontSize: 13+'px'}}>{userName}</span>
       </div>
     )
   }
@@ -33,16 +36,9 @@ class SideBar extends Component {
         <ul className="user-list neutralize">
           {
             users.map((user, index) => (
-              user === myUsername ? (
-                <li key={index} style={{background:'#00cfb6', color: '#FFF'}}>
-                  {this._renderUser(user, index)}
-                </li>
-              ):
-              (
-                <li key={index}>
-                  {this._renderUser(user, index)}
-                </li>
-              )
+              <li key={index}>
+                {this._renderUser(user,myUsername, index)}
+              </li>
             ))
           }
         </ul>

@@ -12,7 +12,8 @@ class ChatContainer extends Component {
       message: '',
       typing: false,
       chats: [],
-      users:[]
+      users:[],
+      typingUsers: {}
     };
   }
 
@@ -23,13 +24,13 @@ class ChatContainer extends Component {
     // Whenever the server emits 'login', log the login message
     socket.on('login', (data) => {
       this.setState({users: data.users})
-      console.log(data);
+      // console.log("On login", data);
     });
 
      // Whenever the server emits 'user joined', log it in the chat body
     socket.on('user joined', (data) => {
       this.setState({users: data.users})
-      console.log(data);
+      // console.log("User joined", data);
     });
 
     // Whenever the server emits 'new message', update the chat body
@@ -51,7 +52,7 @@ class ChatContainer extends Component {
     // Whenever the server emits 'user left', log it in the chat body
     socket.on('user left', (data) => {
       this.setState({users: data.users})
-      console.log(data.username + ' left');
+      // console.log(data.username + ' left');
       this.removeChatTyping(data);
     });
 
@@ -63,15 +64,19 @@ class ChatContainer extends Component {
   addChatMessage = ({username, message}) => {
     const chat = {username, message}
     this.setState({chats: this.state.chats.concat(chat)})
-    console.log(username, message);
   }
 
   addChatTyping = (data) => {
-    console.log("Typing", data);
+    const {username} = data
+    const typingUsers = Object.assign({}, this.state.typingUsers)
+    typingUsers[username] = username
+    this.setState({typingUsers})
   }
 
   removeChatTyping = (data) => {
-    console.log("Stop Typing", data);
+    let typingUsers = Object.assign({}, this.state.typingUsers)
+    delete typingUsers[data.username]
+    this.setState({typingUsers})
   }
 
   // Sends a chat message
@@ -94,13 +99,12 @@ class ChatContainer extends Component {
   }
 
   onChange = e => {
-    const {connected} = this.props
-    if(connected){
-      if(!this.state.typing){
-        this.setState({typing: true})
-        this.state.socket.emit('typing');
-      }
+
+    if(!this.state.typing){
+      this.setState({typing: true})
+      this.state.socket.emit('typing');
     }
+
 
     if(this.stopTyping)
       clearInterval(this.stopTyping)
@@ -117,7 +121,7 @@ class ChatContainer extends Component {
 
 
   render() {
-    const {message, users} = this.state
+    const {message, users, typingUsers} = this.state
     const {username} = this.props
 
     const disabled = this.state.message ? false : true
@@ -135,7 +139,7 @@ class ChatContainer extends Component {
           <div style={{width:15+'px'}}>
           </div>
           <div id="chatbox" className="d-flex">
-            <Messages chats={this.state.chats} myUsername={username}/>
+            <Messages typingUsers={typingUsers} chats={this.state.chats} myUsername={username}/>
             <form className="d-flex" onSubmit={this.handleSubmit}>
               <input
                 value= {message}

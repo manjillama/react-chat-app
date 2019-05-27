@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 class Messages extends Component {
   constructor(props) {
@@ -18,6 +19,18 @@ class Messages extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.scrollDown()
+  }
+
+  renderTypingUsers(){
+      // We cannot interate through object using es6 map function like we do in array
+      // Instead here we use lodash map function
+      return _.map(this.props.typingUsers, user => {
+        return (
+          <li className="user-typing text-muted" key={user}>
+            <i>{`${user} is typing...`}</i>
+          </li>
+        );
+      });
   }
 
   renderChat(chats, myUsername){
@@ -44,6 +57,9 @@ class Messages extends Component {
       <ul ref="messages" className="messages neutralize">
         {
           this.renderChat(chats, myUsername)
+        }
+        {
+          this.renderTypingUsers()
         }
       </ul>
     );

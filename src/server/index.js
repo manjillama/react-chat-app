@@ -20,6 +20,14 @@ var users = [];
 io.on('connection', (socket) => {
   var addedUser = false;
 
+  socket.on('VERIFY_USER', (username, callback) => {
+    if(isUser(users, username)){
+      callback({isUser: true, username: null})
+    }else{
+      callback({isUser: false, username})
+    }
+  })
+
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
     if (addedUser) return;
@@ -81,3 +89,9 @@ io.on('connection', (socket) => {
     }
   });
 });
+
+function isUser(users, username){
+  return users.some(userName => {
+    return username === userName
+  })
+}

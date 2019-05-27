@@ -4,23 +4,46 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: ''
+      username: '',
+      error: null,
+      socket: null
     };
+  }
+
+  componentWillMount(){
+    const {socket} = this.props
+    this.setState({socket});
+
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    const {socket, setUsername} = this.props
-    const { username } = this.state
+    const { socket, username } = this.state
     if(username){
       // Tell the server your username
-      socket.emit('add user', username);
+      socket.emit('VERIFY_USER', username, this.setUsername);
     }
-    setUsername(username)
+  }
+
+  setUsername = ({username, isUser}) => {
+    const {setUsername} = this.props
+    const {socket} = this.state;
+    if(isUser){
+      this.setError("Username taken")
+    }else{
+      this.setError(null)
+      socket.emit('add user', username);
+      setUsername(username)
+    }
+  }
+
+
+  setError = error => {
+    this.setState({error})
   }
 
   render() {
-    const {username} = this.state
+    const {username, error} = this.state
 
     return (
       <form className="login" onSubmit={this.handleSubmit}>
@@ -30,7 +53,10 @@ class LoginForm extends Component {
             value={username}
             onChange={e => {this.setState({username:e.target.value})}}
             type="text"
+            autoComplete="off"
             maxLength="14" />
+          <div className="error">{error ? error : null}</div>
+
         </div>
       </form>
     );

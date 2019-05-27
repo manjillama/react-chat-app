@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-const socketUrl = 'http://localhost:5000'
+const socketUrl = 'http://192.168.100.25:5000'
 
 class Layout extends Component {
   constructor() {
@@ -23,9 +23,6 @@ class Layout extends Component {
   */
   initSocket = () => {
     const socket = io(socketUrl)
-    socket.on('connect', () => {
-      console.log('Connected...');
-    })
     this.setState({socket})
   }
 
@@ -40,7 +37,6 @@ class Layout extends Component {
         {
           !username ?
           <LoginForm
-            username = {username}
             setUsername = {this.setUsername}
             socket={socket}/>
           :
