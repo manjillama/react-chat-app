@@ -1,10 +1,16 @@
 ### Configuration
 
-Edit config.js file inside src/ folder to set it to your production or development server.
+Edit config.js file inside src/ folder to set it to your production or development server.<br>
+
+`npm install`
+
+To install all the required dependencies/modules to run the app.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+
 
 ### `npm start`
 
