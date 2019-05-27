@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Messages from './Messages'
 import Sidebar from './Sidebar'
+import { FaRegPaperPlane } from "react-icons/fa";
+
 
 class ChatContainer extends Component {
   constructor(props) {
@@ -117,23 +119,32 @@ class ChatContainer extends Component {
   render() {
     const {message, users} = this.state
     const {username} = this.props
+
+    const disabled = this.state.message ? false : true
     return (
-      <section className="d-flex">
-        <div id="sidebar">
-          <Sidebar users={users}/>
+      <div>
+        {
+          <div id="header">
+            <p style={{textAlign:'right'}}><a href="https://www.vortexnepal.com/manjiltamang/" target="_blank" rel="noopener noreferrer" className="caption">By Manjil Tamang</a></p>
+          </div>
+        }
+        <div className="d-flex">
+          <div id="sidebar">
+            <Sidebar users={users} myUsername={username}/>
+          </div>
+          <div style={{width:15+'px'}}>
+          </div>
+          <div id="chatbox" className="d-flex">
+            <Messages chats={this.state.chats} myUsername={username}/>
+            <form className="d-flex" onSubmit={this.handleSubmit}>
+              <input
+                value= {message}
+                onChange={this.onChange} placeholder="Type a message here..."/>
+              <button type="submit" disabled={disabled}><FaRegPaperPlane /></button>
+            </form>
+          </div>
         </div>
-        <div style={{width:15+'px'}}>
-        </div>
-        <div id="chatbox">
-          <Messages chats={this.state.chats} myUsername={username}/>
-          <form className="d-flex" onSubmit={this.handleSubmit}>
-            <input
-              value= {message}
-              onChange={this.onChange} placeholder="Type here..."/>
-            <button>Send</button>
-          </form>
-        </div>
-      </section>
+      </div>
     );
   }
 

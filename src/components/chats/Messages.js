@@ -20,20 +20,30 @@ class Messages extends Component {
     this.scrollDown()
   }
 
+  renderChat(chats, myUsername){
+    if(chats.length > 0){
+      return chats.map((chat, index) => {
+        const msgAlign = chat.username === myUsername ? 'right' : ''
+        return (
+          <li key={index} className={msgAlign}>
+            <p>
+              <span className="m">{chat.message}</span>
+              {chat.username !== myUsername && <span className="text-muted sender">{chat.username}</span>}
+            </p>
+          </li>
+        )
+      })
+    }else{
+      return <li className="no-msg text-muted">Send a message to start a conversation.</li>
+    }
+  }
+
   render() {
     const {chats, myUsername} = this.props
     return (
       <ul ref="messages" className="messages neutralize">
         {
-          chats.map((chat, index) => {
-            const msgAlign = chat.username === myUsername ? 'right' : ''
-            return (
-              <li key={index} className={msgAlign}>
-                <span className="m">{chat.message}</span>
-                {chat.username !== myUsername && <span className="text-muted sender">{chat.username}</span>}
-              </li>
-            )
-          })
+          this.renderChat(chats, myUsername)
         }
       </ul>
     );
