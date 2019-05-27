@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
+import config from '../config';
 
-const socketUrl = 'http://192.168.100.25:5000'
+const socketUrl = config.SERVER_URL
 
 class Layout extends Component {
   constructor() {

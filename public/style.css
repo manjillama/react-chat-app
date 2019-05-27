@@ -166,6 +166,7 @@ ul.neutralize{
   font-size: inherit;
   outline: 0;
   border: none;
+  padding-right: 92px;
   background-color: #e6eff8;
 }
 
@@ -212,7 +213,7 @@ ul.neutralize{
 
 #chatbox .messages li .m{
   background: #e6eff8;
-  color: #878b90;
+  color: #626669;
   padding: 10px 15px;
   border-radius: 20px;
   display: inline-block;
@@ -228,15 +229,25 @@ ul.neutralize{
   text-align: center;
 }
 
-#chatbox .messages li.right{
-  text-align: right;
-}
-#chatbox .messages li.right .m{
+#chatbox .messages .m-box.right .m{
   background: #7279ff;
   background: -moz-linear-gradient(-45deg,#7279ff 0%,#af2bf0 100%);
   background: -webkit-linear-gradient(-45deg,#7279ff 0%,#af2bf0 100%);
   background: linear-gradient(135deg,#7279ff 0%,#af2bf0 100%);
   color: #FFF;
+  order: 2;
+}
+#chatbox .messages .m-box{
+  align-items: center;
+}
+
+#chatbox .messages .m-box.right{
+  justify-content: flex-end;
+}
+
+#chatbox .messages .m-box small{
+  color: #575757;
+  margin: 0 4px;
 }
 
 #chatbox .sender{

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const colors = ['#E91E63','#FFB300', '#00BCD4', '#8BC34A', '#00cfb6', '#795548']
+const colors = ['#00BCD4','#FFB300','#E91E63', '#8BC34A', '#00cfb6', '#795548']
 
 
 

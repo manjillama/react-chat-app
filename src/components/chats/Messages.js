@@ -21,6 +21,12 @@ class Messages extends Component {
     this.scrollDown()
   }
 
+  getTime = () => {
+    const date = new Date(Date.now())
+    return `${date.getHours()}:${("0"+date.getMinutes()).slice(-2)}`
+  }
+
+
   renderTypingUsers(){
       // We cannot interate through object using es6 map function like we do in array
       // Instead here we use lodash map function
@@ -39,10 +45,13 @@ class Messages extends Component {
         const msgAlign = chat.username === myUsername ? 'right' : ''
         return (
           <li key={index} className={msgAlign}>
-            <p>
-              <span className="m">{chat.message}</span>
+            <div>
+              <div className={`m-box d-flex ${msgAlign}`}>
+                <span className="m">{chat.message}</span>
+                <small>{this.getTime()}</small>
+              </div>
               {chat.username !== myUsername && <span className="text-muted sender">{chat.username}</span>}
-            </p>
+            </div>
           </li>
         )
       })
