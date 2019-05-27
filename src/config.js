@@ -1,4 +1,5 @@
 export default {
-  SERVER_URL: 'http://localhost:5000'
+  SERVER_URL: 'https://glacial-badlands-28940.herokuapp.com'
 }
+// https://glacial-badlands-28940.herokuapp.com
 // http://localhost:5000

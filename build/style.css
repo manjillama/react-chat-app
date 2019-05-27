@@ -111,7 +111,7 @@ ul.neutralize{
 
 #sidebar{
   width: 250px;
-  height: 94.3vh;
+  height: calc(100vh - 53px);
   overflow-y: scroll;
 }
 
@@ -146,7 +146,7 @@ ul.neutralize{
 
 
 #chatbox {
-  height: 94.3vh;
+  height: calc(100vh - 53px);
   width: 100%;
   flex-direction: column;
 }
