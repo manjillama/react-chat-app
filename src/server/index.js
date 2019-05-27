@@ -1,10 +1,12 @@
 // Setup basic express server
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-var port = process.env.PORT || 5000;
+const express = require('express');
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+const { VERIFY_USER, LOGIN, USER_JOINED, ADD_USER, NEW_MESSAGE, TYPING, STOP_TYPING, USER_LEFT } = require('../events');
 
+
+const port = process.env.PORT || 5000;
 server.listen(port, () => {
   console.log('Server listening at port %d', port);
 });
@@ -20,7 +22,7 @@ var users = [];
 io.on('connection', (socket) => {
   var addedUser = false;
 
-  socket.on('VERIFY_USER', (username, callback) => {
+  socket.on(VERIFY_USER, (username, callback) => {
     if(isUser(users, username)){
       callback({isUser: true, username: null})
     }else{
@@ -29,7 +31,7 @@ io.on('connection', (socket) => {
   })
 
   // when the client emits 'add user', this listens and executes
-  socket.on('add user', (username) => {
+  socket.on(ADD_USER, (username) => {
     if (addedUser) return;
 
     // we store the username in the socket session for this client
@@ -37,12 +39,12 @@ io.on('connection', (socket) => {
     ++numUsers;
     users.push(username);
     addedUser = true;
-    socket.emit('login', {
+    socket.emit(LOGIN, {
       users,
       numUsers: numUsers
     });
     // echo globally (all clients) that a person has connected
-    socket.broadcast.emit('user joined', {
+    socket.broadcast.emit(USER_JOINED, {
       users,
       username: socket.username,
       numUsers: numUsers
@@ -50,24 +52,24 @@ io.on('connection', (socket) => {
   });
 
   // when the client emits 'new message', this listens and executes
-  socket.on('new message', (data) => {
+  socket.on(NEW_MESSAGE, (data) => {
     // we tell the client to execute 'new message'
-    socket.broadcast.emit('new message', {
+    socket.broadcast.emit(NEW_MESSAGE, {
       username: socket.username,
       message: data
     });
   });
 
   // when the client emits 'typing', we broadcast it to others
-  socket.on('typing', () => {
-    socket.broadcast.emit('typing', {
+  socket.on(TYPING, () => {
+    socket.broadcast.emit(TYPING, {
       username: socket.username
     });
   });
 
   // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', () => {
-    socket.broadcast.emit('stop typing', {
+  socket.on(STOP_TYPING, () => {
+    socket.broadcast.emit(STOP_TYPING, {
       username: socket.username
     });
   });
@@ -79,9 +81,8 @@ io.on('connection', (socket) => {
 
       const newUsers = users.filter(username => username !== socket.username)
       users = newUsers;
-
       // echo globally that this client has left
-      socket.broadcast.emit('user left', {
+      socket.broadcast.emit(USER_LEFT, {
         users,
         username: socket.username,
         numUsers: numUsers

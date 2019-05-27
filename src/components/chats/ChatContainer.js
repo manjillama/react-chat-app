@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Messages from './Messages'
 import Sidebar from './Sidebar'
 import { FaRegPaperPlane } from "react-icons/fa";
-
+import { LOGIN, USER_JOINED, NEW_MESSAGE, TYPING, STOP_TYPING, USER_LEFT } from '../../events';
 
 class ChatContainer extends Component {
   constructor(props) {
@@ -22,35 +22,35 @@ class ChatContainer extends Component {
     // socket.emit('add user', 'manjil');
 
     // Whenever the server emits 'login', log the login message
-    socket.on('login', (data) => {
+    socket.on(LOGIN, (data) => {
       this.setState({users: data.users})
       // console.log("On login", data);
     });
 
      // Whenever the server emits 'user joined', log it in the chat body
-    socket.on('user joined', (data) => {
+    socket.on(USER_JOINED, (data) => {
       this.setState({users: data.users})
       // console.log("User joined", data);
     });
 
     // Whenever the server emits 'new message', update the chat body
-    socket.on('new message', (data) => {
+    socket.on(NEW_MESSAGE, (data) => {
       this.addChatMessage(data);
     });
 
 
     // Whenever the server emits 'typing', show the typing message
-    socket.on('typing', (data) => {
+    socket.on(TYPING, (data) => {
       this.addChatTyping(data);
     });
 
     // Whenever the server emits 'stop typing', kill the typing message
-    socket.on('stop typing', (data) => {
+    socket.on(STOP_TYPING, (data) => {
       this.removeChatTyping(data);
     });
 
     // Whenever the server emits 'user left', log it in the chat body
-    socket.on('user left', (data) => {
+    socket.on(USER_LEFT, (data) => {
       this.setState({users: data.users})
       // console.log(data.username + ' left');
       this.removeChatTyping(data);
@@ -92,7 +92,7 @@ class ChatContainer extends Component {
       });
 
       // tell server to execute 'new message' and send along one parameter
-      this.state.socket.emit('new message', message);
+      this.state.socket.emit(NEW_MESSAGE, message);
     }
     this.setState({message: ''})
 
@@ -102,7 +102,7 @@ class ChatContainer extends Component {
 
     if(!this.state.typing){
       this.setState({typing: true})
-      this.state.socket.emit('typing');
+      this.state.socket.emit(TYPING);
     }
 
 
@@ -111,7 +111,7 @@ class ChatContainer extends Component {
 
     this.stopTyping = setTimeout(() => {
       if (this.state.typing) {
-        this.state.socket.emit('stop typing');
+        this.state.socket.emit(STOP_TYPING);
         this.setState({typing: false})
       }
     }, 400);

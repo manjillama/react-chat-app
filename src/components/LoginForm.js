@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { VERIFY_USER, ADD_USER } from '../events';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class LoginForm extends Component {
     const { socket, username } = this.state
     if(username){
       // Tell the server your username
-      socket.emit('VERIFY_USER', username, this.setUsername);
+      socket.emit(VERIFY_USER, username, this.setUsername);
     }
   }
 
@@ -32,7 +33,7 @@ class LoginForm extends Component {
       this.setError("Username taken")
     }else{
       this.setError(null)
-      socket.emit('add user', username);
+      socket.emit(ADD_USER, username);
       setUsername(username)
     }
   }

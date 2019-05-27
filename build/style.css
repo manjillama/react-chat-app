@@ -213,7 +213,7 @@ ul.neutralize{
 
 #chatbox .messages li .m{
   background: #e6eff8;
-  color: #626669;
+  color: #000;
   padding: 10px 15px;
   border-radius: 20px;
   display: inline-block;
