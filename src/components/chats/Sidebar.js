@@ -32,7 +32,7 @@ class SideBar extends Component {
     const {users, myUsername} = this.props
     return (
       <div>
-        <h2>People</h2>
+        <h2>People ({users.length})</h2>
         <ul className="user-list neutralize">
           {
             users.map((user, index) => (

@@ -126,18 +126,17 @@ class ChatContainer extends Component {
 
     const disabled = this.state.message ? false : true
     return (
-      <div>
+      <div className="fw">
         {
           <div id="header">
             <p style={{textAlign:'right'}}><a href="https://www.vortexnepal.com/manjiltamang/" target="_blank" rel="noopener noreferrer" className="caption">By Manjil Tamang</a></p>
           </div>
         }
-        <div className="d-flex">
+        <div className="d-flex main-wrapper">
           <div id="sidebar">
             <Sidebar users={users} myUsername={username}/>
           </div>
-          <div style={{width:15+'px'}}>
-          </div>
+          <div style={{width:15+'px'}} className="spacer"></div>
           <div id="chatbox" className="d-flex">
             <Messages typingUsers={typingUsers} chats={this.state.chats} myUsername={username}/>
             <form className="d-flex" onSubmit={this.handleSubmit}>

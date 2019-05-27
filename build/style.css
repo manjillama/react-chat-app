@@ -19,8 +19,13 @@ html, body, #root {
   color: rgba(0, 0, 0, 0.84);
   height: 100%;
   background: rgb(0,121,57);
+  overflow: hidden;
   /* background: linear-gradient(90deg, rgba(0,121,57,1) 0%, rgba(0,177,98,1) 30%, rgba(0,160,141,1) 100%); */
-  background: linear-gradient(90deg, rgba(118,35,211,1) 0%, rgba(233,141,208,1) 48%, rgba(253,156,189,1) 100%);
+  /* background: linear-gradient(90deg, rgba(118,35,211,1) 0%, rgba(233,141,208,1) 48%, rgba(253,156,189,1) 100%); */
+  /* background: rgb(98,18,127);
+  background: linear-gradient(122deg, rgba(98,18,127,1) 0%, rgba(43,119,174,1) 48%, rgba(0,202,222,1) 100%); */
+  background: rgb(0,86,107);
+  background: linear-gradient(122deg, rgba(0,86,107,1) 0%, rgba(0,142,120,1) 48%, rgba(0,206,135,1) 100%);
 }
 h1, h2, h3, h4, h5, h6, dl, dd, ol, ul, menu, figure, blockquote, p, pre, form {
   margin: 0;
@@ -110,7 +115,8 @@ ul.neutralize{
 }
 
 #sidebar{
-  width: 250px;
+  width: 212px;
+  flex-shrink: 0;
   height: calc(100vh - 53px);
   overflow-y: scroll;
 }
@@ -155,6 +161,8 @@ ul.neutralize{
   background: #FFF;
   padding: 10px 20px;
   position: relative;
+  height: 67px;
+  flex-shrink: 0;
 }
 
 #chatbox input{
@@ -256,4 +264,59 @@ ul.neutralize{
   text-align: left;
   display: block;
   margin-top: -6px;
+}
+
+@media (max-width: 860px) {
+  .main-wrapper{
+    flex-direction: column;
+    height: 100%;
+  }
+  .main-wrapper>*{
+    width: 100% !important;
+  }
+  .main-wrapper>#sidebar{
+    height: auto;
+    max-height: 155px;
+  }
+
+  .main-wrapper>#chatbox{
+    height: 100%;
+  }
+
+  .main-wrapper .spacer{
+    display: none;
+  }
+
+  .fw{
+    height: 100%;
+  }
+
+  #chatbox .messages {
+    height: calc(100% - 146px);
+  }
+
+  #chatbox form {
+    padding: 10px;
+  }
+
+  #chatbox button {
+    right: 13px;
+    width: 40px;
+    padding: 12px 0px;
+  }
+
+  #chatbox input {
+    padding-right: 52px;
+  }
+  #sidebar h2 {
+    font-size: 20px;
+  }
+  #sidebar .user-list li{
+    padding: 6px;
+  }
+  #sidebar .user-list .u-pp {
+    padding: 10px;
+    height: 38px;
+    width: 38px;
+  }
 }

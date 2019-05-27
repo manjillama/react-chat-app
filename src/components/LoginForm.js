@@ -14,7 +14,6 @@ class LoginForm extends Component {
   componentWillMount(){
     const {socket} = this.props
     this.setState({socket});
-
   }
 
   handleSubmit = e => {
