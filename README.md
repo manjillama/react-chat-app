@@ -1,5 +1,7 @@
 Live demo [here](https://live-chat-nodejs.herokuapp.com/)
 
+![](chat-live.gif)
+
 ### Configuration
 
 Edit config.js file inside src/ folder to set it to your production or development server.<br>

@@ -74,6 +74,7 @@ ul.neutralize{
 }
 .login-form label{
   color: #FFF;
+  text-align: center;
 }
 
 .login-form input {
