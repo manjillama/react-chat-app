@@ -21,21 +21,21 @@ Runs the app in the production mode.<br>
 Make sure to run `yarn build` before running in production mode.
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 
-### `npm dev`
+### `npm run dev`
 
 Runs both react app and node.js server simultaneously in the development mode.<br>
 Open [http://localhost:3006](http://localhost:3006) to view react app in the browser.
 
 The page will reload if you make edits.<br>
 
-### `npm react`
+### `npm run react`
 
 Runs the react app in the development mode.<br>
 Open [http://localhost:3006](http://localhost:3006) to view it in the browser.
 
 The page will reload if you make edits.<br>
 
-### `npm server`
+### `npm run server`
 
 Runs the node.js server in the development mode.<br>
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
