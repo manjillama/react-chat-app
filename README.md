@@ -1,4 +1,4 @@
-Live demo [here](https://live-chat-nodejs.herokuapp.com/)
+Live demo [here](http://bit.ly/2WarPqi)
 
 ![](chat-live.gif)
 
