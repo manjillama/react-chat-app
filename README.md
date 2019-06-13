@@ -1,4 +1,4 @@
-Live demo [here](https://live-chat-nodejs.herokuapp.com/)
+Live demo [here](http://bit.ly/2WarPqi)
 
 ![](chat-live.gif)
 
@@ -31,7 +31,7 @@ The page will reload if you make edits.<br>
 ### `npm run react`
 
 Runs the react app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3006) to view it in the browser.
+Open [http://localhost:3006](http://localhost:3006) to view it in the browser.
 
 The page will reload if you make edits.<br>
 
