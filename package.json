@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "node src/server/index.js",
-    "dev": "concurrently 'npm run react' 'npm run server'",
+    "dev": "REACT_APP_ENV=DEV concurrently 'npm run react' 'npm run server'",
     "react": "PORT=3006 react-scripts start",
     "server": "nodemon src/server/index.js",
     "build": "react-scripts build",

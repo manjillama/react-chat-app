@@ -1,71 +1,64 @@
-import React, { Component } from 'react'
-import io from 'socket.io-client'
-import LoginForm from './LoginForm'
-import ChatContainer from './chats/ChatContainer'
-import config from '../config';
-import { VERIFY_USER, ADD_USER } from '../events';
-const socketUrl = config.SERVER_URL
+import React, { Component } from "react";
+import io from "socket.io-client";
+import LoginForm from "./LoginForm";
+import ChatContainer from "./chats/ChatContainer";
+import { SERVER_URL } from "../config";
+import { VERIFY_USER, ADD_USER } from "../events";
 
 class Layout extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      username: "",
       socket: null
     };
   }
 
   componentWillMount() {
-    this.initSocket()
+    this.initSocket();
   }
 
   /*
-  * Connect to and initialize the socket.
-  */
+   * Connect to and initialize the socket.
+   */
   initSocket = () => {
-    const socket = io(socketUrl)
-    socket.on('connect', ()=>{
-      if(this.state.username){
+    const socket = io(SERVER_URL);
+    socket.on("connect", () => {
+      if (this.state.username) {
         socket.emit(VERIFY_USER, this.state.username, this.reconnet);
       }
-    })
-    this.setState({socket})
-  }
+    });
+    this.setState({ socket });
+  };
 
   /*
-  * To reconnect user if connection is lost
-  */
-  reconnet = ({username, isUser}) => {
-    const {socket} = this.state;
-    if(isUser){
-      this.setState({username: ''})
-    }else{
+   * To reconnect user if connection is lost
+   */
+  reconnet = ({ username, isUser }) => {
+    const { socket } = this.state;
+    if (isUser) {
+      this.setState({ username: "" });
+    } else {
       socket.emit(ADD_USER, username);
     }
-  }
+  };
 
   setUsername = username => {
-    this.setState({username})
-  }
+    this.setState({ username });
+  };
 
   render() {
-    const { socket, username  } = this.state
+    const { socket, username } = this.state;
     return (
       <div className="mjl-container">
-        {
-          !username ?
-          <LoginForm
-            setUsername = {this.setUsername}
-            socket={socket}/>
-          :
-          <ChatContainer
-            username = {username}
-            socket={socket}/>
-        }
+        {!username ? (
+          <LoginForm setUsername={this.setUsername} socket={socket} />
+        ) : (
+          <ChatContainer username={username} socket={socket} />
+        )}
       </div>
     );
   }
-
 }
 
 export default Layout;
