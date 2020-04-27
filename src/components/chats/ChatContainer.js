@@ -135,7 +135,7 @@ class ChatContainer extends Component {
                 rel="noopener noreferrer"
                 className="caption"
               >
-                love By Manjil Tamang
+                By Manjil Tamang
               </a>
             </p>
           </div>
